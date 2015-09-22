@@ -16,8 +16,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        repositories {
+            maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases' }
+        }
     }
 
+    sourceSets { main { java.srcDirs = ['src/main/java', 'src/main/java/lib'] } }
 }
 
 dependencies {
@@ -26,4 +30,5 @@ dependencies {
     compile 'com.android.support:cardview-v7:22.0.0'
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.android.support:recyclerview-v7:22.0.0'
+    compile 'com.google.code.ksoap2-android:ksoap2-android:3.5.0'
 }

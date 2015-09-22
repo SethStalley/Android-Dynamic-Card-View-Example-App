@@ -5,12 +5,9 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,10 +34,20 @@ public class Main extends Activity
     private ArrayList<String> mItems;
     private CardViewAdapter mAdapter;
 
+    private ClientController client;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        System.out.println("Connecting to C# Server");
+
+        client = new ClientController();
+        client.sendMsg();
+
+
 
         //load up the cards
         mItems = new ArrayList<>(30);
