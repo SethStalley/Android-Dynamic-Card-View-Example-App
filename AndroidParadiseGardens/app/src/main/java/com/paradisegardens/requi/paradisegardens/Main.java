@@ -35,6 +35,7 @@ public class Main extends Activity
     private CardViewAdapter mAdapter;
 
     private ClientController client;
+    private RecyclerView recyclerView;
 
 
     @Override
@@ -47,8 +48,6 @@ public class Main extends Activity
         client = new ClientController();
         client.sendMsg();
 
-
-
         //load up the cards
         mItems = new ArrayList<>(30);
         for (int i = 0; i < 30; i++) {
@@ -58,7 +57,6 @@ public class Main extends Activity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -66,7 +64,7 @@ public class Main extends Activity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
         //fill the recyclerView with the cards
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mAdapter);
     }
@@ -84,12 +82,8 @@ public class Main extends Activity
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
+
+                recyclerView.removeAllViews();
                 break;
         }
     }

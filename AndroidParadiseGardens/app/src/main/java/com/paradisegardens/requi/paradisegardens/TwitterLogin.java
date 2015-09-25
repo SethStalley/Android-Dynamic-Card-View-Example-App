@@ -4,10 +4,7 @@ package com.paradisegardens.requi.paradisegardens;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.internal.app.WindowDecorActionBar;
-import android.view.Window;
 
-import com.google.android.gms.appdatasearch.Feature;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -17,7 +14,6 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import io.fabric.sdk.android.Fabric;
-
 
 /**
  * A login screen that offers login via email/password.

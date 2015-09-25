@@ -12,20 +12,30 @@
     android:orientation="vertical"
 
     tools:context="com.paradisegardens.requi.paradisegardens.TwitterLogin"
-    android:background="@android:color/background_dark">
+    android:background="@android:color/background_light"
+    android:paddingTop="15dp">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/paradiselogo"
+        android:layout_marginBottom="218dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 
     <ScrollView android:id="@+id/login_form"
-
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="210dp">
         <com.twitter.sdk.android.core.identity.TwitterLoginButton
             android:id="@+id/login_button"
             android:padding="50dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+
     </ScrollView>
 
 
