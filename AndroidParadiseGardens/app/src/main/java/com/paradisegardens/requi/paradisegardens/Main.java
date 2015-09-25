@@ -19,8 +19,10 @@ public class Main extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Home","Events"};
-    int Numboftabs =2;
+
+    //Set tab names and number of them
+    CharSequence Titles[]={"Atracciones","Shows","Restaurantes","Tiendas",};
+    int Numboftabs =4;
 
 
     /**
