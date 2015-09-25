@@ -3,4 +3,6 @@
     <color name="ColorPrimary">#00897B</color>
     <color name="ColorPrimaryDark">#00695C</color>
     <color name="tabsScrollColor">#004D40</color>
+    <color name="button_color">#298cff</color>
+
 </resources>

@@ -22,8 +22,12 @@
         <activity
             android:name=".Main"
             android:label="@string/title_activity_main" >
-
         </activity>
+        <activity
+            android:name=".Contact"
+            android:label="@string/contactenos" >
+        </activity>
+
         <activity
             android:name=".TwitterLogin"
             android:theme="@style/Theme.AppCompat.NoActionBar"

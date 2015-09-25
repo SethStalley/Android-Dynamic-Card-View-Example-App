@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        />
+
+    <TextView
+        android:id="@+id/contactText1"
+         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="13sp"
+        android:text="¡Somos un parque temático de diversiones!
+        Actualmente estamos ubicados en Santa Ana y contamos con:
+        8 montañas rusas, 4 simuladores, 5 restaurantes y 10 tiendas de souvenirs." />
+
+
+    <TextView
+        android:id="@+id/contactText2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:text="Si tiene alguna duda o problema técnico puede dejar un comentario junto con su correo y pronto nos pondremos en contacto." />
+
+    <EditText
+        android:paddingTop="15dp"
+        android:id="@+id/userEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email Ex: juan@gmail.com"
+        />
+
+    <EditText
+        android:id="@+id/userComment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:hint="Su Comentario"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+         <Button
+            android:id="@+id/btn_sendCommen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:drawablePadding="5dp"
+             android:paddingTop="10dp"
+            android:text="Enviar"
+            android:layout_centerInParent="true"
+            android:elevation="1dp"
+
+        />
+    </RelativeLayout>
+
+</LinearLayout>
