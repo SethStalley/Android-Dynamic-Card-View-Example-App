@@ -53,12 +53,9 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         // Creating The Toolbar and setting it as the Toolbar for the activity
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-
 
         /**
          * Tab init stuff on main screen
@@ -103,7 +100,6 @@ public class Main extends AppCompatActivity {
             startActivity(myIntent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

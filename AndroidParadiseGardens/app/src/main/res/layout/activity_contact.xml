@@ -19,10 +19,9 @@
          android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:textSize="13sp"
-        android:text="¡Somos un parque temático de diversiones!
-        Actualmente estamos ubicados en Santa Ana y contamos con:
-        8 montañas rusas, 4 simuladores, 5 restaurantes y 10 tiendas de souvenirs." />
+        android:textSize="15sp"
+        android:text="¡Somos un parque temático de diversiones!\n
+        Actualmente estamos ubicados en Santa Ana y contamos con:\n 8 montañas rusas, 4 simuladores, 5 restaurantes y 10 tiendas de souvenirs." />
 
 
     <TextView
@@ -31,7 +30,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="40dp"
         android:padding="10dp"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:text="Si tiene alguna duda o problema técnico puede dejar un comentario junto con su correo y pronto nos pondremos en contacto." />
 
     <EditText
@@ -39,10 +38,11 @@
         android:id="@+id/userEmail"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Email Ex: juan@gmail.com"
+        android:hint="Email Eje: juan@gmail.com"
         />
 
     <EditText
+        android:paddingTop="15dp"
         android:id="@+id/userComment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -54,10 +54,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
          <Button
-            android:id="@+id/btn_sendCommen"
+            android:id="@+id/btn_sendComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             android:drawablePadding="5dp"
+             android:drawablePadding="15dp"
              android:paddingTop="10dp"
             android:text="Enviar"
             android:layout_centerInParent="true"

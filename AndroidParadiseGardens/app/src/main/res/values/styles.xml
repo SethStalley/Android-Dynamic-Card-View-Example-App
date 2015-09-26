@@ -4,5 +4,6 @@
         <item name="colorPrimary">@color/ColorPrimary</item>
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
         <item name="colorButtonNormal">@color/button_color</item>
+        <item name="android:navigationBarColor">@color/ColorPrimary</item>
     </style>
 </resources>
