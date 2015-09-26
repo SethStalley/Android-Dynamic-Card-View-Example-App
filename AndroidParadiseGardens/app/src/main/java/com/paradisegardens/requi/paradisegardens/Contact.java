@@ -14,7 +14,6 @@ public class Contact extends AppCompatActivity {
     Toolbar toolbar;
 
     //Msg data
-    EditText senderEmail;
     EditText msg;
 
     @Override
@@ -29,7 +28,6 @@ public class Contact extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        senderEmail = (EditText) findViewById(R.id.userEmail);
         msg = (EditText) findViewById(R.id.userComment);
 
         //Send button
@@ -37,8 +35,7 @@ public class Contact extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                emailClient.sendEmail(senderEmail.getText().toString(),
-                        msg.getText().toString());
+                emailClient.sendEmail(msg.getText().toString());
             }
         });
     }

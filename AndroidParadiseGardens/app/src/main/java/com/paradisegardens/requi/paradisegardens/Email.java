@@ -20,11 +20,11 @@ public class Email{
         this.contact = contact;
     }
 
-    public boolean sendEmail(String senderEmail,String msg){
+    public boolean sendEmail(String msg){
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("message/rfc822");
         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{COMPANY_EMAIL});
-        i.putExtra(Intent.EXTRA_SUBJECT, SUBJECT + senderEmail);
+        i.putExtra(Intent.EXTRA_SUBJECT, "Commentario Nuevo");
         i.putExtra(Intent.EXTRA_TEXT   , msg);
 
         try {

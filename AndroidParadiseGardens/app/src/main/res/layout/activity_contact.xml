@@ -33,13 +33,6 @@
         android:textSize="17sp"
         android:text="Si tiene alguna duda o problema técnico puede dejar un comentario junto con su correo y pronto nos pondremos en contacto." />
 
-    <EditText
-        android:paddingTop="15dp"
-        android:id="@+id/userEmail"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email Eje: juan@gmail.com"
-        />
 
     <EditText
         android:paddingTop="15dp"
