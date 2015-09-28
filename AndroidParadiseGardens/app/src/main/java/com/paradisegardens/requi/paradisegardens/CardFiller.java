@@ -19,6 +19,7 @@ public class CardFiller extends Fragment {
 
     private CardViewAdapter mAdapter;
     private RecyclerView recyclerView;
+    private Data data = new Data();
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,10 +31,7 @@ public class CardFiller extends Fragment {
         //if attractions tab
         if (position == 0){
             //load up the cards
-            mItems = new ArrayList<>(30);
-            for (int i = 0; i < 30; i++) {
-                mItems.add(String.format("Card number %02d", i));
-            }
+            mItems = data.getCardData();
         }
 
         mAdapter = new CardViewAdapter(mItems);
@@ -42,10 +40,6 @@ public class CardFiller extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
         recyclerView.setAdapter(mAdapter);
 
-
         return v;
     }
-
-
-
 }
