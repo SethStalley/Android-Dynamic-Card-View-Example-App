@@ -2,28 +2,19 @@ package com.paradisegardens.requi.paradisegardens;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import android.support.v7.widget.RecyclerView;
 
 import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
-
-import static android.graphics.Matrix.*;
 
 /**
  * A simple adapter that loads a CardView layout with one TextView and two Buttons, and
@@ -47,9 +38,13 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
-        viewHolder.title.setText(cards.get(i));
+        String description = cards.get(i);
+        String[] msg = description.split("\\r?\\n");
+
+        viewHolder.name.setText(msg[0].toString());
+        viewHolder.description.setText(msg[1]);
         if(i < imgs.size())
-            new DownloadImageTask(viewHolder.image,viewHolder.title).execute(imgs.get(i));
+            new DownloadImageTask(viewHolder).execute(imgs.get(i));
     }
 
     @Override
@@ -58,24 +53,33 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView title;
+        private TextView name;
+        private TextView description;
         private ImageView image;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.description);
+            name = (TextView) itemView.findViewById(R.id.name);
+            description = (TextView) itemView.findViewById(R.id.description);
             image = (ImageView) itemView.findViewById(R.id.image);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    // item clicked
+                    TextView text = (TextView) itemView.findViewById(R.id.name);
+                    String name = text.getText().toString();
+                    Log.i("Card Press", name);
+                }
+            });
         }
     }
 
 
     class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-        TextView textView;
+        ViewHolder viewHolder;
 
-        public DownloadImageTask(ImageView bmImage, TextView txtView) {
-            this.bmImage = bmImage;
-            textView = txtView;
+        public DownloadImageTask(ViewHolder viewHolder) {
+            this.viewHolder = viewHolder;
         }
 
         protected Bitmap doInBackground(String... urls) {
@@ -92,20 +96,22 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         }
 
         protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
+            viewHolder.image.setImageBitmap(result);
 
-            bmImage.getViewTreeObserver().addOnPreDrawListener(
+            viewHolder.image.getViewTreeObserver().addOnPreDrawListener(
                     new ViewTreeObserver.OnPreDrawListener() {
                         @Override
                         public boolean onPreDraw() {
                             // Remove after the first run so it doesn't fire forever
-                            bmImage.getViewTreeObserver().removeOnPreDrawListener(this);
-                            int height = bmImage.getMeasuredHeight();
+                            viewHolder.image.getViewTreeObserver().removeOnPreDrawListener(this);
+                            int height = viewHolder.image.getMeasuredHeight();
 
                             //Log.i("Image Height is:", Float.toString(height));
 
                             //pad the text
-                            textView.setPadding(15, height, 15, 0);
+                            viewHolder.name.setPadding(15, height, 15, 0);
+                            height += viewHolder.name.getHeight();
+                            viewHolder.description.setPadding(15, height, 15, 0);
                             return  true;
                         }
                     });
