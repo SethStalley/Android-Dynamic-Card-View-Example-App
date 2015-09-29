@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,14 @@ public class CardFiller extends Fragment {
     private String STORES_URL = "http://192.168.0.5/~seth/rest/stores.php";
     //names of data we want from webService
     ArrayList <String> params = new ArrayList<>();
+
+    //Reference to main activity
+    Main main;
+
+    //set a reference to main activity
+    public void setMain(Main main){
+        this.main = main;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,6 +81,7 @@ public class CardFiller extends Fragment {
                 cardsInfo = data.getCardData(RESTAURANT_URL, params);
                 imgUrls = (ArrayList<String>) cardsInfo.get(0);
                 mItems = (ArrayList<String>) cardsInfo.get(1);
+
                 break;
             case 3:
                 params.add("name");
@@ -84,9 +94,7 @@ public class CardFiller extends Fragment {
         }
 
 
-
-
-        mAdapter = new CardViewAdapter(mItems, imgUrls);
+        mAdapter = new CardViewAdapter(main, mItems, imgUrls, position);
         //fill the recyclerView with the cards
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));

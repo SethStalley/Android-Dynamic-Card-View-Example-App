@@ -10,6 +10,6 @@
         app:showAsAction="collapseActionView|ifRoom"
         android:actionViewClass="android.widget.SearchView" />
 
-    <item android:id="@+id/contacte" android:title="@string/contactenos"
+    <item android:id="@+id/contacte" android:title="@string/contact"
         android:orderInCategory="100" />
 </menu>

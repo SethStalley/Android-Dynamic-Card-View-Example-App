@@ -43,7 +43,7 @@ public class Main extends AppCompatActivity {
          * Tab init stuff on main screen
          */
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter =  new ViewPagerAdapter(this, getSupportFragmentManager(),Titles,Numboftabs);
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);

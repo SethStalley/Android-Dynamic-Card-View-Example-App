@@ -1,5 +1,6 @@
 package com.paradisegardens.requi.paradisegardens;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +25,21 @@ import java.util.List;
 public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHolder> {
     private List<String> cards;
     private List<String> imgs;
+    int position; //know which tab we are on\
+    Main main; //instance of main activity
 
-
-    public CardViewAdapter(List<String> cards, List<String> imgs) {
+    public CardViewAdapter(Main main,List<String> cards, List<String> imgs, int position) {
         this.cards = cards;
         this.imgs = imgs;
+        this.position = position;
+        this.main = main;
     }
+
+    //if we are just showing products
+    public CardViewAdapter(ArrayList <String> cards){
+        this.cards = cards;
+    }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -69,6 +80,18 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
                     TextView text = (TextView) itemView.findViewById(R.id.name);
                     String name = text.getText().toString();
                     Log.i("Card Press", name);
+
+                    //if we are a restaurant or store tab then we can show items
+                    switch (position){
+                        case 2: //restaurant
+                            Intent myIntent=new Intent(main, Products.class);
+                            myIntent.putExtra("name", name);
+                            main.startActivity(myIntent);
+                            break;
+                        case 3: //shop
+
+                            break;
+                    }
                 }
             });
         }

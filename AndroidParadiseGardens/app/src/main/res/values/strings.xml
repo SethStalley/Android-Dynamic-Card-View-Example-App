@@ -2,7 +2,8 @@
     <string name="app_name">ParadiseGardens</string>
     <string name="title_activity_main">Paradise Gardens</string>
 
-    <string name="contactenos">Contactenos</string>
+    <string name="contact">Contactenos</string>
+    <string name="products">Productos</string>
 
     <string name="search_title">Buscar</string>
 
