@@ -4,6 +4,7 @@ package com.paradisegardens.requi.paradisegardens;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +27,11 @@ public class Main extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

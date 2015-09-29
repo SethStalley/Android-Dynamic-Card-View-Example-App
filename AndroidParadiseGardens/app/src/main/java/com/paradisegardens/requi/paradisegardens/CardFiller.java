@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class CardFiller extends Fragment {
 
     //Stuff for the cards
     private ArrayList<String> mItems;
+    private ArrayList<String> imgUrls;
 
     private CardViewAdapter mAdapter;
     private RecyclerView recyclerView;
@@ -31,10 +33,12 @@ public class CardFiller extends Fragment {
         //if attractions tab
         if (position == 0){
             //load up the cards
-            mItems = data.getCardData();
+            List cardsInfo = data.getCardData();
+            imgUrls = (ArrayList<String>) cardsInfo.get(0);
+            mItems = (ArrayList<String>) cardsInfo.get(1);
         }
 
-        mAdapter = new CardViewAdapter(mItems);
+        mAdapter = new CardViewAdapter(mItems, imgUrls);
         //fill the recyclerView with the cards
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));

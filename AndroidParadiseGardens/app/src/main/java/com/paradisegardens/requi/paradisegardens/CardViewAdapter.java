@@ -24,27 +24,25 @@ import java.util.List;
  */
 public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHolder> {
     private List<String> cards;
+    private List<String> imgs;
 
 
-    String MY_URL_STRING = "http://melissagoodsell.typepad.com/.a/6a00d83451d02f69e201543246bbd1970c-800wi";
-
-
-    public CardViewAdapter(List<String> cards) {
+    public CardViewAdapter(List<String> cards, List<String> imgs) {
         this.cards = cards;
+        this.imgs = imgs;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view_layout, viewGroup, false);
-        new DownloadImageTask((ImageView) v.findViewById(R.id.image),
-                (TextView) v.findViewById(R.id.description), cards.get(i)).execute(MY_URL_STRING);
-
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
-        //viewHolder.title.setText(cards.get(i));
+        viewHolder.title.setText(cards.get(i));
+        if(i < imgs.size())
+            new DownloadImageTask(viewHolder.image,viewHolder.title).execute(imgs.get(i));
     }
 
     @Override
@@ -67,12 +65,10 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
         TextView textView;
-        String description;
 
-        public DownloadImageTask(ImageView bmImage,  TextView tv, String des) {
+        public DownloadImageTask(ImageView bmImage, TextView txtView) {
             this.bmImage = bmImage;
-            textView = tv;
-            description = des;
+            textView = txtView;
         }
 
         protected Bitmap doInBackground(String... urls) {
@@ -90,8 +86,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
 
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
-            textView.setPadding(15,result.getHeight(), 15, 0);
-            textView.setText(description);
+            textView.setPadding(15, result.getHeight(), 15, 0);
         }
     }
 }
