@@ -38,6 +38,8 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     //if we are just showing products
     public CardViewAdapter(ArrayList <String> cards){
         this.cards = cards;
+        this.imgs = new ArrayList<>();
+        this.position = 5;
     }
 
 

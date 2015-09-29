@@ -1,21 +1,14 @@
 package com.paradisegardens.requi.paradisegardens;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import java.util.ArrayList;
+import android.view.MenuItem;
+
 
 /**
  * Activity to handle showing all the products for a store
@@ -28,9 +21,9 @@ public class Products extends AppCompatActivity {
     String storeName;
     SlidingTabLayout tabs;
 
-    ArrayList <String> mItems;
-    private CardViewAdapter mAdapter;
-
+    //Set tab names and number of them
+    CharSequence Titles[];
+    int Numboftabs =1; //only going to have one tab for products
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +33,8 @@ public class Products extends AppCompatActivity {
         //get our store name back
         Intent myIntent = getIntent();
         storeName = myIntent.getStringExtra("name");
+        //set tab name
+        Titles = new CharSequence[]{storeName};
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -49,17 +44,27 @@ public class Products extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        //load up the cards
-        mItems = new ArrayList<>(30);
-        for (int i = 0; i < 30; i++) {
-            mItems.add(String.format("Card number %02d", i));
-        }
-        mAdapter = new CardViewAdapter(mItems);
+        /**
+         * Tab init stuff on main screen
+         */
+        // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        // Assigning ViewPager View and setting the adapter
+        pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(adapter);
 
-        //fill the recyclerView with the cards
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(mAdapter);
+        // Assiging the Sliding Tab Layout View
+        tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
+        // Setting Custom Color for the Scroll bar indicator of the Tab View
+        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.tabsScrollColor);
+            }
+        });
+        // Setting the ViewPager For the SlidingTabsLayout
+        tabs.setViewPager(pager);
     }
 
     @Override
@@ -74,4 +79,8 @@ public class Products extends AppCompatActivity {
     }
 
 
+
+
 }
+
+

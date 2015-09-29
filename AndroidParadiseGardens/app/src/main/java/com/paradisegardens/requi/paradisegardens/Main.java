@@ -22,7 +22,7 @@ public class Main extends AppCompatActivity {
 
     //Set tab names and number of them
     CharSequence Titles[]={"Atracciones","Shows","Restaurantes","Tiendas",};
-    int Numboftabs =4;
+    int Numberoftabs =4;
 
 
     @Override
@@ -43,7 +43,7 @@ public class Main extends AppCompatActivity {
          * Tab init stuff on main screen
          */
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(this, getSupportFragmentManager(),Titles,Numboftabs);
+        adapter =  new ViewPagerAdapter(this, getSupportFragmentManager(),Titles,Numberoftabs);
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);

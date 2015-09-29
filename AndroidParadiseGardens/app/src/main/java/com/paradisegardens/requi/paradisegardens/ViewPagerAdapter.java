@@ -27,13 +27,12 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         products = false;
     }
 
-    //if we are building to show shop products
-    public ViewPagerAdapter(FragmentManager fm, String storeName){
+    // Build a Constructor and assign the passed Values to appropriate values in the class
+    public ViewPagerAdapter(FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
         super(fm);
+        this.Titles = mTitles;
+        this.NumbOfTabs = mNumbOfTabsumb;
         products = true;
-        this.NumbOfTabs = 1;
-        this.Titles = null;
-        this.storeName = storeName;
     }
 
     //This method return the fragment for the every position in the View Pager
@@ -44,6 +43,10 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         //set our position value so our CardFiller knows which tab we are on
         Bundle args = new Bundle();
+        //if we are on a products tab
+        if(products)
+            position = 5;
+        //pass these to Cardfiller through bundle
         args.putInt("pos", position);
         args.putBoolean("products", products);
         Log.e("ProductsPage", products.toString());
