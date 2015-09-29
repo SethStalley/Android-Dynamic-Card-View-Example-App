@@ -101,8 +101,8 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
                             // Remove after the first run so it doesn't fire forever
                             bmImage.getViewTreeObserver().removeOnPreDrawListener(this);
                             int height = bmImage.getMeasuredHeight();
-                            
-                            Log.i("Image Height is:", Float.toString(height));
+
+                            //Log.i("Image Height is:", Float.toString(height));
 
                             //pad the text
                             textView.setPadding(15, height, 15, 0);

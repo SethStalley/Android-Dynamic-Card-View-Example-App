@@ -77,7 +77,7 @@ public class CardFiller extends Fragment {
                 params.add("name");
                 params.add("schedule");
                 //load up the cards
-                cardsInfo = data.getCardData(SHOWS_URL, params);
+                cardsInfo = data.getCardData(STORES_URL, params);
                 imgUrls = (ArrayList<String>) cardsInfo.get(0);
                 mItems = (ArrayList<String>) cardsInfo.get(1);
                 break;
