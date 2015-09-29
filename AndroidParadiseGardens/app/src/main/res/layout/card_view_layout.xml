@@ -16,14 +16,14 @@
 
         <ImageView
             android:id = "@+id/image"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             />
 
         <TextView
             android:id="@+id/description"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"

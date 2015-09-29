@@ -2,6 +2,8 @@ package com.paradisegardens.requi.paradisegardens;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -17,6 +19,8 @@ import android.support.v7.widget.RecyclerView;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
+
+import static android.graphics.Matrix.*;
 
 /**
  * A simple adapter that loads a CardView layout with one TextView and two Buttons, and
@@ -86,7 +90,25 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
 
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
-            textView.setPadding(15, result.getHeight(), 15, 0);
+
+            //measure the height using the img's draw matrix
+            float[] f = new float[9];
+            bmImage.getImageMatrix().getValues(f);
+
+            // Extract the scale values using the constants (if aspect ratio maintained, scaleX == scaleY)
+            final float scaleX = f[MSCALE_X];
+            final float scaleY = f[MSCALE_Y];
+
+            // Get the drawable (could also get the bitmap behind the drawable and getWidth/getHeight)
+            final Drawable d = bmImage.getDrawable();
+            final int origH = d.getIntrinsicHeight();
+
+            // Calculate the actual dimensions
+            final int height = Math.round(origH * scaleY);
+
+
+            //pad the text
+            textView.setPadding(15, height, 15, 0);
         }
     }
 }

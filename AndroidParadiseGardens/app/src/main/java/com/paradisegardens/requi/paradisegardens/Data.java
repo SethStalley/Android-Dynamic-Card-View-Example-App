@@ -21,26 +21,26 @@ import java.util.List;
 
 public class Data {
 
-    private String SERVER_URL = "http://192.168.0.5/~seth/rest/activities.php";
+    public List getCardData(String url, ArrayList<String> params){
 
-    public List getCardData(){
         ArrayList<String> cardsData = new ArrayList<>();
         ArrayList<String> imgUrls = new ArrayList<>();
 
         JSONObject json = null;
         JSONArray jsonArray = null;
         try{
-            json = new JSONObject(getJson());
+            json = new JSONObject(getJson(url));
             jsonArray = json.getJSONArray("info");
 
             for(int i = 0; i<jsonArray.length(); i++){
                 ArrayList<String> msg = new ArrayList<>();
 
-                msg.add(jsonArray.getJSONObject(i).getString("name"));
-                msg.add(jsonArray.getJSONObject(i).getString("description"));
-                msg.add(jsonArray.getJSONObject(i).getString("schedule"));
-                msg.add(jsonArray.getJSONObject(i).getString("state"));
-                msg.add(jsonArray.getJSONObject(i).getString("capacity"));
+                //add img url
+                imgUrls.add(jsonArray.getJSONObject(i).getString("imgurl"));
+
+                //add our text data
+                for(String name : params)
+                    msg.add(jsonArray.getJSONObject(i).getString(name));
 
                 String text = "";
                 for(int j = 0; j< msg.size(); j++){
@@ -58,12 +58,13 @@ public class Data {
         return data;
     }
 
-    protected String getJson() {
+    //Get the json from the specified url
+    protected String getJson(String url) {
         String result = null;
 
         DefaultHttpClient   httpclient = new DefaultHttpClient(new BasicHttpParams());
         HttpClient client = new DefaultHttpClient();
-        HttpGet get = new HttpGet(SERVER_URL);
+        HttpGet get = new HttpGet(url);
         InputStream inputStream = null;
         try {
             HttpResponse response = httpclient.execute(get);
