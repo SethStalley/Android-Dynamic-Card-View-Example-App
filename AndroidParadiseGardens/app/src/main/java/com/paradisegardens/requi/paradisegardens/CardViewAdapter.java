@@ -3,6 +3,8 @@ package com.paradisegardens.requi.paradisegardens;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.AsyncTask;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -91,24 +94,21 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
 
-            //measure the height using the img's draw matrix
-            float[] f = new float[9];
-            bmImage.getImageMatrix().getValues(f);
+            bmImage.getViewTreeObserver().addOnPreDrawListener(
+                    new ViewTreeObserver.OnPreDrawListener() {
+                        @Override
+                        public boolean onPreDraw() {
+                            // Remove after the first run so it doesn't fire forever
+                            bmImage.getViewTreeObserver().removeOnPreDrawListener(this);
+                            int height = bmImage.getMeasuredHeight();
+                            
+                            Log.i("Image Height is:", Float.toString(height));
 
-            // Extract the scale values using the constants (if aspect ratio maintained, scaleX == scaleY)
-            final float scaleX = f[MSCALE_X];
-            final float scaleY = f[MSCALE_Y];
-
-            // Get the drawable (could also get the bitmap behind the drawable and getWidth/getHeight)
-            final Drawable d = bmImage.getDrawable();
-            final int origH = d.getIntrinsicHeight();
-
-            // Calculate the actual dimensions
-            final int height = Math.round(origH * scaleY);
-
-
-            //pad the text
-            textView.setPadding(15, height, 15, 0);
+                            //pad the text
+                            textView.setPadding(15, height, 15, 0);
+                            return  true;
+                        }
+                    });
         }
     }
 }
