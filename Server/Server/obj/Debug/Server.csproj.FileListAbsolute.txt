@@ -1,6 +1,0 @@
-C:\Users\Seth\Documents\GitHub\ParadiseGardensProject\Server\Server\bin\Debug\Server.exe.config
-C:\Users\Seth\Documents\GitHub\ParadiseGardensProject\Server\Server\bin\Debug\Server.exe
-C:\Users\Seth\Documents\GitHub\ParadiseGardensProject\Server\Server\bin\Debug\Server.pdb
-C:\Users\Seth\Documents\GitHub\ParadiseGardensProject\Server\Server\obj\Debug\Server.exe
-C:\Users\Seth\Documents\GitHub\ParadiseGardensProject\Server\Server\obj\Debug\Server.pdb
-C:\Users\Seth\Documents\GitHub\ParadiseGardensProject\Server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
