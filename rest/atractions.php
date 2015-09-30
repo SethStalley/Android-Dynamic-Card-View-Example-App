@@ -12,9 +12,9 @@ while($r = mysql_fetch_array($qur)){
   $Description = utf8_encode($Description);
   $Schedule = utf8_encode($Schedule);
   $State = utf8_encode($State);
-  
-  $result[] = array("name" => $Name, "description" => $Description,
-  "schedule" => $Schedule, "state" => $State, "capacity"=>$Capacity,
+
+  $result[] = array("name" => $Name, "Descripción" => $Description,
+  "Horario" => $Schedule, "Estado" => $State, "Capacidad"=>$Capacity,
   "imgurl"=> $ImgUrl);
 }
 

@@ -9,11 +9,11 @@ $result = array();
 while($r = mysql_fetch_array($qur)){
   extract($r);
   $Name = utf8_encode($Name);
-  $Description = utf8_encode($Description);
   $Schedule = utf8_encode($Schedule);
   $Location = utf8_encode($Location);
-  $result[] = array("name" => $Name, "location" => $Location,
-  "schedule" => $Schedule, "imgurl"=> $ImgUrl);
+  $Description = utf8_encode($Description);
+  $result[] = array("name" => $Name, "Descripción"=> $Description,  "Lugar" => $Location,
+  "Horario" => $Schedule, "imgurl"=> $ImgUrl);
 }
 
 $json = array("info" => $result);

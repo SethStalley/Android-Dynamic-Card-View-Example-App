@@ -11,7 +11,7 @@ while($r = mysql_fetch_array($qur)){
   $Name = utf8_encode($Name);
   $Schedule = utf8_encode($Schedule);
 
-  $result[] = array("name" => $Name, "schedule" => $Schedule,
+  $result[] = array("name" => $Name, "Horario" => $Schedule,
 "imgurl"=> $ImgUrl);
 }
 

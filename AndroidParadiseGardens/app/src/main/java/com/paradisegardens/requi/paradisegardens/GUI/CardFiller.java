@@ -66,10 +66,10 @@ public class CardFiller extends Fragment {
         switch (position){
             case 0:
                 params.add("name");
-                params.add("description");
-                params.add("schedule");
-                params.add("state");
-                params.add("capacity");
+                params.add("Descripción");
+                params.add("Horario");
+                params.add("Estado");
+                params.add("Capacidad");
                 //load up the cards
                 cardsInfo = data.getCardData(ATRACTION_URL, params);
                 imgUrls = (ArrayList<String>) cardsInfo.get(0);
@@ -77,8 +77,9 @@ public class CardFiller extends Fragment {
                 break;
             case 1:
                 params.add("name");
-                params.add("schedule");
-                params.add("location");
+                params.add("Descripción");
+                params.add("Horario");
+                params.add("Lugar");
                 //load up the cards
                 cardsInfo = data.getCardData(SHOWS_URL, params);
                 imgUrls = (ArrayList<String>) cardsInfo.get(0);
@@ -86,7 +87,7 @@ public class CardFiller extends Fragment {
                 break;
             case 2:
                 params.add("name");
-                params.add("schedule");
+                params.add("Horario");
                 //load up the cards
                 cardsInfo = data.getCardData(RESTAURANT_URL, params);
                 imgUrls = (ArrayList<String>) cardsInfo.get(0);
@@ -94,7 +95,7 @@ public class CardFiller extends Fragment {
                 break;
             case 3:
                 params.add("name");
-                params.add("schedule");
+                params.add("Horario");
                 //load up the cards
                 cardsInfo = data.getCardData(STORES_URL, params);
                 imgUrls = (ArrayList<String>) cardsInfo.get(0);
@@ -102,7 +103,7 @@ public class CardFiller extends Fragment {
                 break;
             case 4: //product page show all products
                 params.add("name");
-                params.add("description");
+                params.add("Descripción");
 
                 try {
                     storeName = URLEncoder.encode(storeName, "UTF-8");
@@ -120,8 +121,8 @@ public class CardFiller extends Fragment {
 
             case 5: //product page show all products
                 params.add("name");
-                params.add("price");
-                params.add("available");
+                params.add("Precio");
+                params.add("Disponible");
 
                 try {
                     storeName = URLEncoder.encode(storeName, "UTF-8");
@@ -130,7 +131,6 @@ public class CardFiller extends Fragment {
                 }
 
                 productURL = PRODUCT_URL + storeName;
-
 
                 cardsInfo = data.getCardData(productURL, params);
                 imgUrls = (ArrayList<String>) cardsInfo.get(0);

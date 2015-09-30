@@ -1,6 +1,7 @@
 package com.paradisegardens.requi.paradisegardens.Data;
 
 
+import android.text.format.Time;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -18,6 +19,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 
 public class Data {
 
@@ -33,22 +36,33 @@ public class Data {
             jsonArray = json.getJSONArray("info");
 
             for(int i = 0; i<jsonArray.length(); i++){
-                ArrayList<String> msg = new ArrayList<>();
-
                 //add img url
                 imgUrls.add(jsonArray.getJSONObject(i).getString("imgurl"));
-
+                String line = ""; //one line of text in card
+                String abierto = "";
                 //add our text data
-                for(String name : params) {
-                    msg.add(jsonArray.getJSONObject(i).getString(name).toString());
-                }
+                for(String name : params){
+                    String responce = jsonArray.getJSONObject(i).getString(name).toString();
 
-                String text = "";
-                for(int j = 0; j< msg.size(); j++){
-                    if(msg.get(j) != "null")
-                        text += msg.get(j) + "\n";
+                    if(name == "Horario" && !url.contains("shows")){
+                        abierto = estaAbierto(responce);
+                    }
+
+                    if(responce != "null"){
+                        if(name != "name")
+                            line += name + ": " + responce;
+                        else
+                            line += responce;
+                        line += "\n";
+                    }
                 }
-                cardsData.add(String.format(text));
+                if(!url.contains("shows"))
+                    line += abierto;
+
+                Random r = new Random();
+                if(url.contains("atractions"))
+                    line += "\nTiempo Espera: " + (r.nextInt(4 - 0 + 1)) + "." + (r.nextInt(59 - 10 + 1) + 10)+"hrs";
+                cardsData.add(String.format(line));
             }
         }catch(Exception e){
             Log.e("Json Parse", e.toString());
@@ -60,8 +74,53 @@ public class Data {
         return data;
     }
 
+    /**
+     *
+     * @param horario string time from web service
+     * @return string that says if it's open or not
+     */
+    private String estaAbierto(String horario){
+        Time today = new Time(Time.getCurrentTimezone());
+        today.setToNow();
+        String curTimeHour =  today.format("%k");
 
+        String estado = "Cerrado";
 
+        String[] msg = horario.split(",");
+        //for all the times
+        for(String time : msg){
+
+            time = time.replaceAll("\\s", "");
+
+            //if it's not a time range
+            if(!time.contains("-")){
+                int hour = convertToMilitary(time);
+                if(hour == Integer.parseInt(curTimeHour))
+                    estado = "Abierto";
+            }
+            else{//it is a time range to check if curTime is in range
+                String []timeRange = time.split("-");
+                int lower = convertToMilitary(timeRange[0]);
+                int higher = convertToMilitary(timeRange[1]);
+                int currentHour = Integer.parseInt(curTimeHour.replaceAll("\\s",""));
+
+                Log.e("Lower&Higher time", lower + " and " + currentHour +" and " + higher);
+                if(lower <= currentHour &&
+                    currentHour <= higher)
+                    estado = "Abierto";
+            }
+        }
+
+        return estado;
+    }
+
+    //convert am style hour to military
+    private int convertToMilitary(String hour){
+        int militaryHour = Integer.parseInt(hour.split(":")[0]);
+        if(hour.split(":")[1].contains("pm"))
+            militaryHour += 12;
+        return  militaryHour;
+    }
 
     //Get the json from the specified url
     protected String getJson(String url) {
