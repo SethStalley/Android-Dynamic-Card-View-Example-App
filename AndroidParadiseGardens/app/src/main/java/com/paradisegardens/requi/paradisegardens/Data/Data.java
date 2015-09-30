@@ -104,7 +104,7 @@ public class Data {
                 int higher = convertToMilitary(timeRange[1]);
                 int currentHour = Integer.parseInt(curTimeHour.replaceAll("\\s",""));
 
-                Log.e("Lower&Higher time", lower + " and " + currentHour +" and " + higher);
+                //Log.e("Lower&Higher time", lower + " and " + currentHour +" and " + higher);
                 if(lower <= currentHour &&
                     currentHour <= higher)
                     estado = "Abierto";

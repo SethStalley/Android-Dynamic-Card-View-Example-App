@@ -31,13 +31,14 @@ public class CardFiller extends Fragment {
     private Data data = new Data();
 
     //our webService URLS
-    private String IP = "192.168.0.13";
+    private String IP = "192.168.0.5";
     private String ATRACTION_URL = "http://"+IP+"/~seth/rest/atractions.php";
     private String SHOWS_URL = "http://"+IP+"/~seth/rest/shows.php";
     private String RESTAURANT_URL = "http://"+IP+"/~seth/rest/restaurants.php";
     private String STORES_URL = "http://"+IP+"/~seth/rest/stores.php";
     private String PRODUCT_URL = "http://"+IP+"/~seth/rest/products.php?storeName=";
     private String PLATES_URL = "http://"+IP+"/~seth/rest/plates.php?storeName=";
+    private String SEARCH_URL = "http://"+IP+"/~seth/rest/search.php?item=";
 
     //names of data we want from webService
     ArrayList <String> params = new ArrayList<>();
@@ -126,12 +127,27 @@ public class CardFiller extends Fragment {
 
                 try {
                     storeName = URLEncoder.encode(storeName, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
+                }catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
 
                 productURL = PRODUCT_URL + storeName;
 
+                cardsInfo = data.getCardData(productURL, params);
+                imgUrls = (ArrayList<String>) cardsInfo.get(0);
+                mItems = (ArrayList<String>) cardsInfo.get(1);
+                Log.e("Product Name", productURL);
+                break;
+            case 6: //search case
+                params.add("name");
+                params.add("Descripción");
+                params.add("Categoria");
+                params.add("Horario");
+                params.add("Lugar");
+                params.add("Estado");
+
+
+                productURL = SEARCH_URL + storeName;
                 cardsInfo = data.getCardData(productURL, params);
                 imgUrls = (ArrayList<String>) cardsInfo.get(0);
                 mItems = (ArrayList<String>) cardsInfo.get(1);

@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import android.support.v7.widget.RecyclerView;
@@ -77,12 +79,15 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         private TextView name;
         private TextView description;
         private ImageView image;
+        private RelativeLayout loading, cardsView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             description = (TextView) itemView.findViewById(R.id.description);
             image = (ImageView) itemView.findViewById(R.id.image);
+            loading = (RelativeLayout) itemView.findViewById(R.id.loadingPanel);
+            cardsView = (RelativeLayout) itemView.findViewById(R.id.cardsVew);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
@@ -101,13 +106,12 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
                         myIntent.putExtra("name", name);
                         myIntent.putExtra("position", position);
                         main.startActivity(myIntent);
-                        main.finish();
+                        //main.finish();
                     }
                 }
             });
         }
     }
-
 
     class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ViewHolder viewHolder;
@@ -146,6 +150,8 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
                             viewHolder.name.setPadding(15, height, 15, 0);
                             height += viewHolder.name.getHeight();
                             viewHolder.description.setPadding(15, height, 15, 0);
+                            viewHolder.loading.setVisibility(View.GONE);
+                            viewHolder.cardsView.setVisibility(View.VISIBLE);
                             return  true;
                         }
                     });

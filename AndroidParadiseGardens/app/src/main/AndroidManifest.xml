@@ -22,6 +22,8 @@
         <activity
             android:name=".GUI.Main"
             android:label="@string/title_activity_main" >
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".GUI.Contact"
@@ -40,13 +42,12 @@
                 <action android:name="android.intent.action.Main" />
                 <action android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
 
         <meta-data
             android:name="io.fabric.ApiKey"

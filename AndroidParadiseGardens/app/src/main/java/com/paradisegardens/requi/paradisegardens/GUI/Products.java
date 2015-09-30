@@ -43,10 +43,12 @@ public class Products extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
+        //if search change title
+        if(position == 6)
+            setTitle("Resultados Busqueda");
         /**
          * Tab init stuff on main screen
          */

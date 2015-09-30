@@ -4,6 +4,7 @@ package com.paradisegardens.requi.paradisegardens.GUI;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.support.v7.widget.SearchView;
 import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.paradisegardens.requi.paradisegardens.R;
 
 
@@ -68,6 +68,28 @@ public class Main extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Log.d("Search", "onQueryTextSubmit ");
+                Intent myIntent=new Intent(Main.this, Products.class);
+                myIntent.putExtra("name", s);  //search case
+                myIntent.putExtra("position", 6);  //search case
+
+                startActivity(myIntent);
+                //finish();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                Log.d("Search", "onQueryTextChange ");
+                return false;
+            }
+        });
         return true;
     }
 
