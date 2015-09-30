@@ -11,7 +11,6 @@ $result = array();
 while($r = mysql_fetch_array($qur)){
   extract($r);
   $Name = utf8_encode($Name);
-  $Name = utf8_encode($Name);
   $result[] = array("name" => $Name, "Precio"=>$Price,
   "Disponible"=> $Available,  "imgurl"=> $ImgUrl);
 }
