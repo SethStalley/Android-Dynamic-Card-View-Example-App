@@ -106,7 +106,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
                         myIntent.putExtra("name", name);
                         myIntent.putExtra("position", position);
                         main.startActivity(myIntent);
-                        //main.finish();
+                        main.finish();
                     }
                 }
             });

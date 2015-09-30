@@ -43,8 +43,8 @@ public class Products extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //if search change title
         if(position == 6)
@@ -79,7 +79,7 @@ public class Products extends AppCompatActivity {
                 onBackPressed();
                 Intent myIntent=new Intent(this,Main.class);
                 startActivity(myIntent);
-                finish();
+                //finish();
                 return true;
         }
 
