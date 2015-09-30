@@ -11,7 +11,7 @@
 
     android:orientation="vertical"
 
-    tools:context="com.paradisegardens.requi.paradisegardens.TwitterLogin"
+    tools:context="com.paradisegardens.requi.paradisegardens.GUI.TwitterLogin"
     android:background="@android:color/background_light"
     android:paddingTop="15dp">
 

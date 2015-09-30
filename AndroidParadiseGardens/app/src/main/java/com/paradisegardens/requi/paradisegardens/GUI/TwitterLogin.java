@@ -1,10 +1,11 @@
-package com.paradisegardens.requi.paradisegardens;
+package com.paradisegardens.requi.paradisegardens.GUI;
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.paradisegardens.requi.paradisegardens.R;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;

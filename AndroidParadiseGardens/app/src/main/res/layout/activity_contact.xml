@@ -18,10 +18,13 @@
         android:id="@+id/contactText1"
          android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textSize="15sp"
-        android:text="¡Somos un parque temático de diversiones!\n
-        Actualmente estamos ubicados en Santa Ana y contamos con:\n 8 montañas rusas, 4 simuladores, 5 restaurantes y 10 tiendas de souvenirs." />
+        android:paddingTop="40dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:text="¡Somos un parque temático de diversiones!
+        Actualmente estamos ubicados en Santa Ana y contamos con: 8 montañas rusas, 4 simuladores, 5 restaurantes y 10 tiendas de souvenirs." />
 
 
     <TextView
@@ -30,7 +33,8 @@
         android:layout_height="wrap_content"
         android:paddingTop="40dp"
         android:padding="10dp"
-        android:textSize="17sp"
+        android:textSize="16sp"
+        android:gravity="center"
         android:text="Si tiene alguna duda o problema técnico puede dejar un comentario junto con su correo y pronto nos pondremos en contacto." />
 
 
@@ -55,6 +59,7 @@
             android:text="Enviar"
             android:layout_centerInParent="true"
             android:elevation="1dp"
+             android:textColor="@color/button_text"
 
         />
     </RelativeLayout>

@@ -1,13 +1,13 @@
-package com.paradisegardens.requi.paradisegardens;
+package com.paradisegardens.requi.paradisegardens.GUI;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import java.io.Serializable;
+import com.paradisegardens.requi.paradisegardens.GUI.CardFiller;
+import com.paradisegardens.requi.paradisegardens.GUI.Main;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -17,6 +17,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     String storeName;
     Boolean products;
+    int position; //which product
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
     public ViewPagerAdapter(Main main, FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
@@ -28,12 +29,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
-    public ViewPagerAdapter(FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
+    public ViewPagerAdapter(FragmentManager fm,CharSequence mTitles[],
+                            int mNumbOfTabsumb, String storeName, int position) {
         super(fm);
         this.Titles = mTitles;
         this.NumbOfTabs = mNumbOfTabsumb;
         products = true;
+        this.storeName = storeName;
+        this.position = position;
     }
+
 
     //This method return the fragment for the every position in the View Pager
     @Override
@@ -45,7 +50,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         Bundle args = new Bundle();
         //if we are on a products tab
         if(products)
-            position = 5;
+            position = this.position;
         //pass these to Cardfiller through bundle
         args.putInt("pos", position);
         args.putBoolean("products", products);

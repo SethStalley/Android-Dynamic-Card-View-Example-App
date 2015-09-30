@@ -1,4 +1,4 @@
-package com.paradisegardens.requi.paradisegardens;
+package com.paradisegardens.requi.paradisegardens.GUI;
 
 import android.R;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.paradisegardens.requi.paradisegardens.GUI.SlidingTabLayout;
 
 class SlidingTabStrip extends LinearLayout {
 

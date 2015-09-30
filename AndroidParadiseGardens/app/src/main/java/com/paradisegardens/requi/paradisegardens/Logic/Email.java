@@ -1,8 +1,9 @@
-package com.paradisegardens.requi.paradisegardens;
+package com.paradisegardens.requi.paradisegardens.Logic;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
+
+import com.paradisegardens.requi.paradisegardens.GUI.Contact;
 
 
 /**

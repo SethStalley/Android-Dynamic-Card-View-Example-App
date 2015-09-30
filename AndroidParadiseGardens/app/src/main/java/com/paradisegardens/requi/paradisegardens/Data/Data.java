@@ -1,4 +1,4 @@
-package com.paradisegardens.requi.paradisegardens;
+package com.paradisegardens.requi.paradisegardens.Data;
 
 
 import android.util.Log;
@@ -39,12 +39,14 @@ public class Data {
                 imgUrls.add(jsonArray.getJSONObject(i).getString("imgurl"));
 
                 //add our text data
-                for(String name : params)
-                    msg.add(jsonArray.getJSONObject(i).getString(name));
+                for(String name : params) {
+                    msg.add(jsonArray.getJSONObject(i).getString(name).toString());
+                }
 
                 String text = "";
                 for(int j = 0; j< msg.size(); j++){
-                    text += msg.get(j) + "\n";
+                    if(msg.get(j) != "null")
+                        text += msg.get(j) + "\n";
                 }
                 cardsData.add(String.format(text));
             }
@@ -57,6 +59,9 @@ public class Data {
         data.add(cardsData);
         return data;
     }
+
+
+
 
     //Get the json from the specified url
     protected String getJson(String url) {

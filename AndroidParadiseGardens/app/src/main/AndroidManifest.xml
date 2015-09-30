@@ -20,20 +20,20 @@
         android:theme="@style/AppTheme"
         >
         <activity
-            android:name=".Main"
+            android:name=".GUI.Main"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name=".Contact"
+            android:name=".GUI.Contact"
             android:label="@string/contact" >
         </activity>
         <activity
-            android:name=".Products"
+            android:name=".GUI.Products"
             android:label="@string/products" >
         </activity>
 
         <activity
-            android:name=".TwitterLogin"
+            android:name=".GUI.TwitterLogin"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             >
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.paradisegardens.requi.paradisegardens;
+package com.paradisegardens.requi.paradisegardens.GUI;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import android.support.v7.widget.RecyclerView;
+
+import com.paradisegardens.requi.paradisegardens.R;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -55,7 +57,13 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         String[] msg = description.split("\\r?\\n");
 
         viewHolder.name.setText(msg[0].toString());
-        viewHolder.description.setText(msg[1]);
+        String text = "";
+        for(int j = 1 ; j < msg.length; j++) {
+            if(msg[j] != "null\n")
+                text += msg[j] + "\n";
+        }
+        viewHolder.description.setText(text);
+
         if(i < imgs.size())
             new DownloadImageTask(viewHolder).execute(imgs.get(i));
     }
@@ -84,15 +92,16 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
                     Log.i("Card Press", name);
 
                     //if we are a restaurant or store tab then we can show items
-                    switch (position){
-                        case 2: //restaurant
-                            Intent myIntent=new Intent(main, Products.class);
-                            myIntent.putExtra("name", name);
-                            main.startActivity(myIntent);
-                            break;
-                        case 3: //shop
-
-                            break;
+                    if(position == 2 || position == 3){
+                        if(position==2)
+                            position = 4;
+                        else
+                            position = 5;
+                        Intent myIntent=new Intent(main, Products.class);
+                        myIntent.putExtra("name", name);
+                        myIntent.putExtra("position", position);
+                        main.startActivity(myIntent);
+                        main.finish();
                     }
                 }
             });

@@ -1,4 +1,4 @@
-package com.paradisegardens.requi.paradisegardens;
+package com.paradisegardens.requi.paradisegardens.GUI;
 
 
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.paradisegardens.requi.paradisegardens.Logic.Email;
+import com.paradisegardens.requi.paradisegardens.R;
 
 public class Contact extends AppCompatActivity {
     Email emailClient = new Email(this);
