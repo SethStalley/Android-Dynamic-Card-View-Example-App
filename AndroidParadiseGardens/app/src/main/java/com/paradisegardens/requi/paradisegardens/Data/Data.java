@@ -48,7 +48,7 @@ public class Data {
                         abierto = estaAbierto(responce);
                     }
 
-                    if(responce != "null"){
+                    if(responce != "null" && responce != ""){
                         if(name != "name")
                             line += name + ": " + responce;
                         else
