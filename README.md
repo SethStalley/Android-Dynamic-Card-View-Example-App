@@ -5,7 +5,7 @@ Theme park android sample app, using Material design card view layouts and DB co
   * Material Design
   * Tab View
   * Dynamic cards with IMG resizing
-  * Php web service - JASON
+  * Php web service - JSON
   * Simple Search Implementation
   * Twitter Login
 
